@@ -1,59 +1,59 @@
-<?php
+    <?php
 
-namespace App;
+    namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Model;
 
-class Membership extends Model
-{
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'contestant_id', 
-        'series_id', 
-        'notes',
-        'pending',
-        'paid', 
-        'payment_id', 
-    ];
-
-    protected $casts = [
-        'paid' => 'boolean'
-    ];
-
-    /**
-     * The contestant membership is for.
-     */
-    public function contestant()
+    class Membership extends Model
     {
-        return $this->belongsTo( Contestant::class );
-    }
 
-    /**
-     * Series membership is for.
-     */
-    public function series()
-    {
-        return $this->belongsTo( Series::class );
-    }
+        /**
+         * The attributes that are mass assignable.
+         *
+         * @var array
+         */
+        protected $fillable = [
+            'contestant_id', 
+            'series_id', 
+            'notes',
+            'pending',
+            'paid', 
+            'payment_id', 
+        ];
 
-    /**
-     * Payment
-     */
-    public function payment()
-    {
-        return $this->belongsTo( Payment::class );
-    }
+        protected $casts = [
+            'paid' => 'boolean'
+        ];
 
-    /**
-     * Payment item
-     */
-    public function payment_item()
-    {
-        return $this->morphOne( PaymentItem::class, 'paymentable' );
+        /**
+         * The contestant membership is for.
+         */
+        public function contestant()
+        {
+            return $this->belongsTo( Contestant::class );
+        }
+
+        /**
+         * Series membership is for.
+         */
+        public function series()
+        {
+            return $this->belongsTo( Series::class );
+        }
+
+        /**
+         * Payment
+         */
+        public function payment()
+        {
+            return $this->belongsTo( Payment::class );
+        }
+
+        /**
+         * Payment item
+         */
+        public function payment_item()
+        {
+            return $this->morphOne( PaymentItem::class, 'paymentable' );
+        }
     }
-}
