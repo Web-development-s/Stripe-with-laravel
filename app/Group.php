@@ -33,3 +33,4 @@ class Group extends Model
         return $query->whereIn('id', $ids);
     }
 }
+
